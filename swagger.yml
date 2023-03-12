@@ -9,6 +9,9 @@ info:
     name: NodeJS 18.
   version: "1.0.0"
 servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/STKR342/123/1.0.0
   - url: https://greensserver.onrender.com/api
     description: Development server
 paths:
@@ -104,8 +107,7 @@ paths:
           required: true
           schema:
             $ref: '#/components/schemas/Token'
-            # example:
-            #   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWU1MjUzZGViM2RjZDY2NDY2NzljZCIsImlhdCI6MTY3ODQ2NzY1NSwiZXhwIjoxNjc4NDc0ODU1fQ.LC5BlNE4wYJuZoAOb6TpF0cci9f8hwWOOg1FF-XX5Vg'
+            
       responses:
         '204':
           description: OK
@@ -152,6 +154,162 @@ paths:
                   type: string
                   example:
                     message: 'Invalid credentials'
+  /users/{userId}:
+    get:
+      tags:
+        - User
+      description: getById
+      operationId: getById
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: token
+          required: true
+          schema:
+            # type: string
+            $ref: '#/components/schemas/Token'
+            # example:
+            #   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWU1MjUzZGViM2RjZDY2NDY2NzljZCIsImlhdCI6MTY3ODQ2NzY1NSwiZXhwIjoxNjc4NDc0ODU1fQ.LC5BlNE4wYJuZoAOb6TpF0cci9f8hwWOOg1FF-XX5Vg'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                  example:
+                    message: 'success'
+        '404':
+          description: UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                  example:
+                    message: 'Not found'
+    delete:
+      tags:
+        - User
+      description: getById
+      operationId: deleteById
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: token
+          required: true
+          schema:
+            # type: string
+            $ref: '#/components/schemas/Token'
+            # example:
+            #   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWU1MjUzZGViM2RjZDY2NDY2NzljZCIsImlhdCI6MTY3ODQ2NzY1NSwiZXhwIjoxNjc4NDc0ODU1fQ.LC5BlNE4wYJuZoAOb6TpF0cci9f8hwWOOg1FF-XX5Vg'
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                  example:
+                    message: 'success'
+        '404':
+          description: UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                  example:
+                    message: 'Not found'
+    put:
+      tags:
+        - User
+      description: getById
+      operationId: updateById
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: token
+          required: true
+          schema:
+            # type: string
+            $ref: '#/components/schemas/Token'
+            # example:
+            #   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWU1MjUzZGViM2RjZDY2NDY2NzljZCIsImlhdCI6MTY3ODQ2NzY1NSwiZXhwIjoxNjc4NDc0ODU1fQ.LC5BlNE4wYJuZoAOb6TpF0cci9f8hwWOOg1FF-XX5Vg'
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                  example:
+                    message: 'success'
+        '404':
+          description: UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                  example:
+                    message: 'Not found'
+  /users/avatar:
+    post:
+      tags:
+        - User
+      description: uploadAvatar
+      operationId: uploadAvatar
+      parameters:
+        - in: header
+          name: file
+          description: file.
+          x-mimetype: form-data
+          required: true
+          schema:
+            $ref: ''
+        - in: header
+          name: token
+          required: true
+          schema:
+            # type: string
+            $ref: '#/components/schemas/Token'
+            # example:
+            #   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZWU1MjUzZGViM2RjZDY2NDY2NzljZCIsImlhdCI6MTY3ODQ2NzY1NSwiZXhwIjoxNjc4NDc0ODU1fQ.LC5BlNE4wYJuZoAOb6TpF0cci9f8hwWOOg1FF-XX5Vg'
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                  example:
+                    message: 'success'
+        '404':
+          description: UNAUTHORIZED
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                  example:
+                    message: 'Not found'
 components:
   schemas:
     Token:
